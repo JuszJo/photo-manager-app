@@ -15,7 +15,11 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView>
-  
+        <View>
+            <Text>
+                Photo Management App
+            </Text>
+        </View>
     </SafeAreaView>
   );
 }
