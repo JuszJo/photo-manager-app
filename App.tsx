@@ -10,11 +10,14 @@ import {
   View,
 } from 'react-native';
 
+import Appbar from './screens/home/Appbar';
+
 
 function App(): JSX.Element {
 
   return (
     <SafeAreaView>
+        <Appbar />
         <View>
             <Text>
                 Photo Management App
