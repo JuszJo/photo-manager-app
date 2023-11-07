@@ -21,3 +21,5 @@ const style = StyleSheet.create({
         color: "white"
     }
 })
+
+// add more things
