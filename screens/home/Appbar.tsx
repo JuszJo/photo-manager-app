@@ -1,11 +1,31 @@
 import react from 'react'
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
+
+const burger = require('../../assets/burger.png')
+const account = require('../../assets/account.png')
 
 export default function Appbar(): JSX.Element {
     return (
         <>
             <View style={style.appbar}>
-                <Text style={style.appbarText}>Appbar</Text>
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    height: 64,
+                    marginHorizontal: 16
+                }}>
+                    <View>
+                        <Image source={burger} />
+                    </View>
+                    <View>
+                        <Text style={style.appbarText}>Photos</Text>
+                    </View>
+                    <View>
+                        <Image source={account } />
+                    </View>
+                </View>
             </View>
         </>
     )
@@ -13,12 +33,14 @@ export default function Appbar(): JSX.Element {
 
 const style = StyleSheet.create({
     appbar: {
-        height: 40,
-        backgroundColor: 'blue',
+        height: 64,
+        backgroundColor: 'white',
     },
     appbarText: {
         textAlign: 'center',
-        color: "white"
+        color: "#444444",
+        fontSize: 22,
+        fontFamily: 'Gadugi',
     }
 })
 
