@@ -19,7 +19,6 @@ export default function ImageView(): JSX.Element {
 
     useEffect(() => {
         if(hasPermission) {
-            console.log("there is permission");
             fetchPhotos()
         }
     }, [hasPermission])
@@ -33,7 +32,6 @@ export default function ImageView(): JSX.Element {
                     data={photos}
                     keyExtractor={(_, index) => index.toString()}
                     renderItem={({item, index}) => {
-                        {console.log(item.node.image.uri)}
                         return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
                     }}
                  />
@@ -44,7 +42,8 @@ export default function ImageView(): JSX.Element {
 
 const style = StyleSheet.create({
     imageList: {
-        padding: 16
+        padding: 16,
+        backgroundColor: 'red',
     },
     image: {
         height: 120,

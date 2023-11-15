@@ -115,8 +115,6 @@ export default function usePermission() {
     }, [checkAndroidPermissions, openSettingsAlert]);
 
     useEffect(() => {
-        console.log('checking permission');
-        
         checkPermission();
     }, [checkPermission]);
 

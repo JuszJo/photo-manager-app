@@ -12,14 +12,22 @@ import {
 
 import Appbar from './screens/home/Appbar';
 import ImageView from './screens/home/ImageView';
+import BottomAppbar from './screens/home/BottomAppbar';
 
 
 function App(): JSX.Element {
 
   return (
     <SafeAreaView>
-        <Appbar />
-        <ImageView />
+        <View style={{
+            display: 'flex',
+            backgroundColor: 'blue',
+            height: '100%'
+        }}>
+            <Appbar />
+            <ImageView />
+            {/* <BottomAppbar /> */}
+        </View>
     </SafeAreaView>
   );
 }
