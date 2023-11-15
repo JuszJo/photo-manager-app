@@ -35,7 +35,6 @@ const style = StyleSheet.create({
     appbar: {
         height: 64,
         backgroundColor: 'white',
-        // position: 'absolute'
     },
     appbarText: {
         textAlign: 'center',
@@ -44,5 +43,3 @@ const style = StyleSheet.create({
         fontFamily: 'Gadugi',
     }
 })
-
-// add more things

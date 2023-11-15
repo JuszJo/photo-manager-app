@@ -1,6 +1,6 @@
 import react, { useCallback, useEffect, useState } from 'react'
 
-import { StyleSheet, View, Text, Image, FlatList } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Text, Image, FlatList } from 'react-native'
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll'
 import usePermission from '../../hooks/usePermission';
 
@@ -25,25 +25,26 @@ export default function ImageView(): JSX.Element {
 
     return (
         <>
-            <View>
-                <FlatList
-                    style={style.imageList}
-                    numColumns={3}
-                    data={photos}
-                    keyExtractor={(_, index) => index.toString()}
-                    renderItem={({item, index}) => {
-                        return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
-                    }}
-                 />
-            </View>
+            <SafeAreaView>
+                <View>
+                    <FlatList
+                        style={style.imageList}
+                        numColumns={3}
+                        data={photos}
+                        keyExtractor={(_, index) => index.toString()}
+                        renderItem={({item, index}) => {
+                            return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
+                        }}
+                    />
+                </View>
+            </SafeAreaView>
         </>
     )
 }
 
 const style = StyleSheet.create({
     imageList: {
-        padding: 16,
-        backgroundColor: 'red',
+        padding: 8,
     },
     image: {
         height: 120,

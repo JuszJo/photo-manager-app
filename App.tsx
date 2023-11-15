@@ -20,8 +20,6 @@ function App(): JSX.Element {
   return (
     <SafeAreaView>
         <View style={{
-            display: 'flex',
-            backgroundColor: 'blue',
             height: '100%'
         }}>
             <Appbar />
