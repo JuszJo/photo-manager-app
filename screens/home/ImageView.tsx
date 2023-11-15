@@ -1,6 +1,6 @@
 import react, { useCallback, useEffect, useState } from 'react'
 
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList } from 'react-native'
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll'
 import usePermission from '../../hooks/usePermission';
 
@@ -14,13 +14,10 @@ export default function ImageView(): JSX.Element {
             assetType: 'All'
         })
 
-        console.log(response);
-
         setPhotos(response.edges)
     }, [])
 
     useEffect(() => {
-        console.log("dunno", hasPermission);
         if(hasPermission) {
             console.log("there is permission");
             fetchPhotos()
@@ -30,10 +27,30 @@ export default function ImageView(): JSX.Element {
     return (
         <>
             <View>
-                {photos?.map(item => {
-                    return <Text key={item.node.image.uri}>{item.node.image.uri}</Text>
-                })}
+                <FlatList
+                    style={style.imageList}
+                    numColumns={3}
+                    data={photos}
+                    keyExtractor={(_, index) => index.toString()}
+                    renderItem={({item, index}) => {
+                        {console.log(item.node.image.uri)}
+                        return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
+                    }}
+                 />
             </View>
         </>
     )
 }
+
+const style = StyleSheet.create({
+    imageList: {
+        padding: 16
+    },
+    image: {
+        height: 120,
+        width: '33%',
+        borderRadius: 4,
+        marginRight: 4,
+        marginBottom: 4
+    }
+})
