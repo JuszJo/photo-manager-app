@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import Appbar from './screens/home/Appbar';
+import ImageView from './screens/home/ImageView';
 
 
 function App(): JSX.Element {
@@ -18,11 +19,7 @@ function App(): JSX.Element {
   return (
     <SafeAreaView>
         <Appbar />
-        <View>
-            <Text>
-                Photo Management App
-            </Text>
-        </View>
+        <ImageView />
     </SafeAreaView>
   );
 }
