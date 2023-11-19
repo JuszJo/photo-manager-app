@@ -25,7 +25,7 @@ export default function ImageView(): JSX.Element {
 
     return (
         <>
-            <View style={{flexBasis: '83%'}}>
+            <View style={{flexBasis: '83%', marginTop: 4}}>
                 <FlatList
                     style={style.imageList}
                     numColumns={3}
