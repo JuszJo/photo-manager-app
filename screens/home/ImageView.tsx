@@ -25,26 +25,23 @@ export default function ImageView(): JSX.Element {
 
     return (
         <>
-            <SafeAreaView>
-                <View>
-                    <FlatList
-                        style={style.imageList}
-                        numColumns={3}
-                        data={photos}
-                        keyExtractor={(_, index) => index.toString()}
-                        renderItem={({item, index}) => {
-                            return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
-                        }}
-                    />
-                </View>
-            </SafeAreaView>
+            <View style={{flexBasis: '83%'}}>
+                <FlatList
+                    style={style.imageList}
+                    numColumns={3}
+                    data={photos}
+                    keyExtractor={(_, index) => index.toString()}
+                    renderItem={({item, index}) => {
+                        return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
+                    }}
+                />
+            </View>
         </>
     )
 }
 
 const style = StyleSheet.create({
     imageList: {
-        padding: 8,
     },
     image: {
         height: 120,

@@ -16,8 +16,6 @@ const style = StyleSheet.create({
     bottomAppbar: {
         height: 64,
         backgroundColor: 'green',
-        position: 'absolute',
-        bottom: 0,
         width: '100%'
     },
     text: {
