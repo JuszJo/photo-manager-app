@@ -1,6 +1,6 @@
 import react, { useCallback, useEffect, useState } from 'react'
 
-import { SafeAreaView, StyleSheet, View, Text, Image, FlatList } from 'react-native'
+import { StyleSheet, View, Image, FlatList } from 'react-native'
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll'
 import usePermission from '../../hooks/usePermission';
 

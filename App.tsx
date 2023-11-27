@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import {
     SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    useColorScheme,
     View,
 } from 'react-native';
 
@@ -60,15 +55,12 @@ function App(): JSX.Element {
 
     return (
         <>
-            {/* <SafeAreaView style={{ backgroundColor: '#F1F1F1' }}> */}
-            {/* <Photos /> */}
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
                     <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
-            {/* </SafeAreaView> */}
         </>
     );
 }
