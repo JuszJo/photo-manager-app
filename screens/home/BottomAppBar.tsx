@@ -1,22 +1,27 @@
 import react from 'react'
-import { StyleSheet, View, Image, Text } from 'react-native'
+import { StyleSheet, View, Image, Text, Pressable } from 'react-native'
+import { navigationProps } from '../../App'
 
 const photos = require('../../assets/photos.png')
 const library = require('../../assets/library.png')
 
-export default function BottomAppbar(): JSX.Element {
-    
+export default function BottomAppbar({ navigation }: navigationProps): JSX.Element {
+
     return (
         <>
             <View style={style.bottomAppbar}>
-                <View style={style.viewContainer}>
-                    <Image source={photos} />
-                    <Text style={style.text}>Photos</Text>
-                </View>
-                <View style={style.viewContainer}>
-                    <Image source={library} />
-                    <Text style={style.text}>Library</Text>
-                </View>
+                <Pressable onPress={() => navigation.navigate('Photos')}>
+                    <View style={style.viewContainer}>
+                        <Image source={photos} />
+                        <Text style={style.text}>Photos</Text>
+                    </View>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate('Library')}>
+                    <View style={style.viewContainer}>
+                        <Image source={library} />
+                        <Text style={style.text}>Library</Text>
+                    </View>
+                </Pressable>
             </View>
         </>
     )

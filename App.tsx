@@ -14,9 +14,12 @@ import Appbar from './screens/home/Appbar';
 import ImageView from './screens/home/ImageView';
 import BottomAppbar from './screens/home/BottomAppbar';
 import Drawer from './screens/home/Drawer';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
+export type navigationProps = NativeStackScreenProps<StackParamList>
 
-function App(): JSX.Element {
+function Photos({ navigation, route }: navigationProps): JSX.Element {
     const [shouldOpen, setShouldOpen] = useState(false)
 
     return (
@@ -28,11 +31,46 @@ function App(): JSX.Element {
                         <ImageView />
                     </View>
                     <View>
-                        <BottomAppbar />
+                        <BottomAppbar navigation={navigation} route={route} />
                     </View>
                 </View>
                 <Drawer shouldOpen={shouldOpen} setShouldOpen={setShouldOpen} />
             </SafeAreaView>
+        </>
+    )
+}
+
+function Library({ navigation, route }: navigationProps): JSX.Element {
+    return (
+        <>
+            <SafeAreaView>
+                <Text>Welcome</Text>
+                <BottomAppbar navigation={navigation} route={route} />
+            </SafeAreaView>
+        </>
+    )
+}
+
+export type StackParamList = {
+    Photos: undefined,
+    Library: undefined,
+}
+
+const Stack = createNativeStackNavigator<StackParamList>();
+
+function App(): JSX.Element {
+
+    return (
+        <>
+            {/* <SafeAreaView style={{ backgroundColor: '#F1F1F1' }}> */}
+            {/* <Photos /> */}
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
+                    <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
+                </Stack.Navigator>
+            </NavigationContainer>
+            {/* </SafeAreaView> */}
         </>
     );
 }
