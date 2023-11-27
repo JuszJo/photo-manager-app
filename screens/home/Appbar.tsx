@@ -21,7 +21,7 @@ export default function Appbar({ setShouldOpen }: appbarProps): JSX.Element {
                     height: 64,
                     marginHorizontal: 16
                 }}>
-                    <Pressable onPress={() => setShouldOpen(prev => !prev)} style={({pressed}) => [{backgroundColor: pressed ? 'rgba(0, 0, 0, 0.1)' : 'transparent', width: 35, height: 35, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20}]}>
+                    <Pressable onPress={() => setShouldOpen(prev => !prev)} style={({pressed}) => [{backgroundColor: pressed ? 'rgba(0, 0, 0, 0.1)' : 'transparent'}, style.buttonPressed]}>
                         <View>
                             <Image source={burger} />
                         </View>
@@ -48,5 +48,12 @@ const style = StyleSheet.create({
         color: "#444444",
         fontSize: 22,
         fontFamily: 'Gadugi',
+    },
+    buttonPressed: {
+        width: 35,
+        height: 35, display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20
     }
 })
