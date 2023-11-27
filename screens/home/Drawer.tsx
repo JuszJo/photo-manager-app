@@ -2,6 +2,7 @@ import react, { useEffect, useRef } from "react"
 import { StyleSheet, View, Text, Button, Animated, Easing, Image, Pressable } from "react-native"
 
 const burger = require('../../assets/burger.png')
+const cancel = require('../../assets/close.png')
 
 type drawerProps = {
     shouldOpen: boolean,
@@ -42,9 +43,9 @@ export default function Drawer({ shouldOpen, setShouldOpen }: drawerProps): JSX.
     return (
         <>
                 <Animated.View style={[styles.drawer, {transform: [{translateX: move}]}]}>
-                    <View style={{height: 64, display: 'flex', justifyContent: 'center', marginLeft: 16}}>
-                        <Pressable onPress={() => setShouldOpen(prev => !prev)}>
-                            <Image source={burger} />
+                    <View style={{height: 64, display: 'flex', justifyContent: 'center', marginLeft: 24}}>
+                        <Pressable onPress={() => setShouldOpen(prev => !prev)} >
+                            <Image source={cancel} />
                         </Pressable>
                     </View>
                 </Animated.View>
@@ -60,4 +61,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
     },
+    buttonPressed: {
+        backgroundColor: 'red'
+    }
 })

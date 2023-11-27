@@ -21,7 +21,7 @@ export default function Appbar({ setShouldOpen }: appbarProps): JSX.Element {
                     height: 64,
                     marginHorizontal: 16
                 }}>
-                    <Pressable onPress={() => setShouldOpen(prev => !prev)}>
+                    <Pressable onPress={() => setShouldOpen(prev => !prev)} style={({pressed}) => [{backgroundColor: pressed ? 'rgba(0, 0, 0, 0.1)' : 'transparent', width: 35, height: 35, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20}]}>
                         <View>
                             <Image source={burger} />
                         </View>
