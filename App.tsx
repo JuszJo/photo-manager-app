@@ -31,7 +31,7 @@ function App(): JSX.Element {
                         <BottomAppbar />
                     </View>
                 </View>
-                <Drawer shouldOpen={shouldOpen} />
+                <Drawer shouldOpen={shouldOpen} setShouldOpen={setShouldOpen} />
             </SafeAreaView>
         </>
     );

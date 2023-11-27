@@ -30,7 +30,7 @@ export default function Appbar({ setShouldOpen }: appbarProps): JSX.Element {
                         <Text style={style.appbarText}>Photos</Text>
                     </View>
                     <View>
-                        <Image source={account } />
+                        <Image source={account} />
                     </View>
                 </View>
             </View>
