@@ -1,10 +1,15 @@
-import react from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native';
+import react, { useRef } from 'react'
+import { StyleSheet, View, Text, Image, Pressable, Animated, Easing } from 'react-native';
 
 const burger = require('../../assets/burger.png')
 const account = require('../../assets/account.png')
 
-export default function Appbar(): JSX.Element {
+type appbarProps = {
+    setShouldOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function Appbar({ setShouldOpen }: appbarProps): JSX.Element {
+
     return (
         <>
             <View style={style.appbar}>
@@ -16,9 +21,11 @@ export default function Appbar(): JSX.Element {
                     height: 64,
                     marginHorizontal: 16
                 }}>
-                    <View>
-                        <Image source={burger} />
-                    </View>
+                    <Pressable onPress={() => setShouldOpen(prev => !prev)}>
+                        <View>
+                            <Image source={burger} />
+                        </View>
+                    </Pressable>
                     <View>
                         <Text style={style.appbarText}>Photos</Text>
                     </View>
