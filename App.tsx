@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
+    Image,
     SafeAreaView,
+    Text,
     View,
 } from 'react-native';
 
@@ -22,7 +24,7 @@ function Photos({ navigation, route }: navigationProps): JSX.Element {
                 <View style={{ height: '100%', display: 'flex', justifyContent: 'space-between' }}>
                     <View style={{ display: 'flex' }}>
                         <Appbar setShouldOpen={setShouldOpen} />
-                        <ImageView />
+                        <ImageView navigation={navigation} route={route} />
                     </View>
                     <View>
                         <BottomAppbar navigation={navigation} route={route} />
@@ -44,9 +46,24 @@ function Library({ navigation, route }: navigationProps): JSX.Element {
     )
 }
 
+function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList, 'Image'>): JSX.Element {
+    const { uri } = route.params
+
+    return (
+        <>
+            <SafeAreaView>
+                <View style={{display: 'flex', height: '100%', justifyContent: 'center'}}>
+                    <Image style={{ aspectRatio: 16 / 9 }} source={{ uri: uri }} />
+                </View>
+            </SafeAreaView>
+        </>
+    )
+}
+
 export type StackParamList = {
     Photos: undefined,
     Library: undefined,
+    Image: { uri: string }
 }
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -59,6 +76,7 @@ function App(): JSX.Element {
                 <Stack.Navigator>
                     <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
                     <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
+                    <Stack.Screen name='Image' component={ViewImage} options={{ headerTitleAlign: 'center' }} />
                 </Stack.Navigator>
             </NavigationContainer>
         </>

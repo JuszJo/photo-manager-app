@@ -1,10 +1,11 @@
 import react, { useCallback, useEffect, useState } from 'react'
 
-import { StyleSheet, View, Image, FlatList } from 'react-native'
+import { StyleSheet, View, Image, FlatList, Pressable } from 'react-native'
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll'
 import usePermission from '../../hooks/usePermission';
+import { navigationProps } from '../../App';
 
-export default function ImageView(): JSX.Element {
+export default function ImageView({ navigation, route }: navigationProps): JSX.Element {
     const [hasPermission] = usePermission();
     const [photos, setPhotos] = useState<PhotoIdentifier[]>();
 
@@ -32,7 +33,10 @@ export default function ImageView(): JSX.Element {
                     data={photos}
                     keyExtractor={(_, index) => index.toString()}
                     renderItem={({item, index}) => {
-                        return <Image key={item.node.image.uri} height={140} source={{uri: item.node.image.uri}} style={style.image} />
+                        return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', { uri: item.node.image.uri })} >
+                            <Image key={item.node.image.uri} source={{uri: item.node.image.uri}} style={style.image} />
+                        </Pressable>
+                        
                     }}
                 />
             </View>
@@ -43,9 +47,12 @@ export default function ImageView(): JSX.Element {
 const style = StyleSheet.create({
     imageList: {
     },
-    image: {
+    pressableStyle: {
         height: 120,
         width: '33%',
+    },
+    image: {
+        height: '100%',
         borderRadius: 4,
         marginRight: 4,
         marginBottom: 4
