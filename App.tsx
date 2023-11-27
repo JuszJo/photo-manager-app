@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { PropsWithChildren } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -44,7 +43,6 @@ function Library({ navigation, route }: navigationProps): JSX.Element {
     return (
         <>
             <SafeAreaView>
-                <Text>Welcome</Text>
                 <BottomAppbar navigation={navigation} route={route} />
             </SafeAreaView>
         </>
