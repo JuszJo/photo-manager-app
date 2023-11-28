@@ -32,6 +32,8 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
     const [albums, setAlbums] = useState<Array<Album>>();
     const [folders, setFolders] = useState<PhotoIdentifiersPage[]>();
 
+    const { setShouldOpen } = useContext(DrawerContext)
+
     const fetchAlbums = useCallback(async () => {
         const response = await CameraRoll.getAlbums({
             assetType: 'Photos',
@@ -63,14 +65,6 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
             })
         }
     }, [albums])
-
-    useEffect(() => {
-        if (folders) {
-            // console.log(folders);
-        }
-    }, [folders])
-
-    const { setShouldOpen } = useContext(DrawerContext)
 
     return (
         <>
