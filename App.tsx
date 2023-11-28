@@ -12,6 +12,7 @@ import BottomAppbar from './screens/home/BottomAppbar';
 import Drawer from './screens/home/Drawer';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import Library from './screens/Library/Library';
 
 export type navigationProps = NativeStackScreenProps<StackParamList>
 
@@ -31,16 +32,6 @@ function Photos({ navigation, route }: navigationProps): JSX.Element {
                     </View>
                 </View>
                 <Drawer shouldOpen={shouldOpen} setShouldOpen={setShouldOpen} />
-            </SafeAreaView>
-        </>
-    )
-}
-
-function Library({ navigation, route }: navigationProps): JSX.Element {
-    return (
-        <>
-            <SafeAreaView>
-                <BottomAppbar navigation={navigation} route={route} />
             </SafeAreaView>
         </>
     )
