@@ -17,8 +17,6 @@ import Photos from './screens/home/Photos';
 
 export type navigationProps = NativeStackScreenProps<StackParamList>
 
-
-
 function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList, 'Image'>): JSX.Element {
     const { uri, aspectRatio } = route.params    
 
