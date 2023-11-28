@@ -12,7 +12,8 @@ export default function ImageView({ navigation, route }: navigationProps): JSX.E
     const fetchPhotos = useCallback(async () => {
         const response = await CameraRoll.getPhotos({
             first: 100,
-            assetType: 'All'
+            assetType: 'All',
+            include: ['imageSize'],
         })
 
         setPhotos(response.edges)
@@ -33,7 +34,9 @@ export default function ImageView({ navigation, route }: navigationProps): JSX.E
                     data={photos}
                     keyExtractor={(_, index) => index.toString()}
                     renderItem={({item, index}) => {
-                        return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', { uri: item.node.image.uri })} >
+                        const aspectRatio = item.node.image.width / item.node.image.height;
+                        
+                        return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', { uri: item.node.image.uri, aspectRatio: aspectRatio })} >
                             <Image key={item.node.image.uri} source={{uri: item.node.image.uri}} style={style.image} />
                         </Pressable>
                         

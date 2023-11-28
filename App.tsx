@@ -47,13 +47,13 @@ function Library({ navigation, route }: navigationProps): JSX.Element {
 }
 
 function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList, 'Image'>): JSX.Element {
-    const { uri } = route.params
+    const { uri, aspectRatio } = route.params    
 
     return (
         <>
             <SafeAreaView>
                 <View style={{display: 'flex', height: '100%', justifyContent: 'space-around'}}>
-                    <Image style={{ aspectRatio: 16 / 9 }} source={{ uri: uri }} />
+                    <Image style={{ aspectRatio: aspectRatio }} source={{ uri: uri }} />
                 </View>
             </SafeAreaView>
         </>
@@ -63,7 +63,7 @@ function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList,
 export type StackParamList = {
     Photos: undefined,
     Library: undefined,
-    Image: { uri: string }
+    Image: { uri: string, aspectRatio?: number }
 }
 
 const Stack = createNativeStackNavigator<StackParamList>();
