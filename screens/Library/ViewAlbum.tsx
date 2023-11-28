@@ -17,7 +17,8 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
         const response = await CameraRoll.getPhotos({
             first: 100,
             assetType: 'All',
-            groupName: title
+            groupName: title,
+            include: ['imageSize']
         })
 
         setPhotos(response.edges)
@@ -31,8 +32,8 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
 
     return (
         <>
-            <SafeAreaView style={{backgroundColor: 'rgb(245, 245, 245)'}}>
-                <View style={{flexBasis: '83%', marginTop: 4}}>
+            <SafeAreaView style={style.mainView}>
+                <View style={{flexBasis: '90%', marginTop: 4}}>
                     <FlatList
                         style={style.imageList}
                         numColumns={3}
@@ -40,19 +41,26 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
                         keyExtractor={(_, index) => index.toString()}
                         renderItem={({item, index}) => {
                             const aspectRatio = item.node.image.width / item.node.image.height;
-                            
+                                                        
                             return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', { uri: item.node.image.uri, aspectRatio: aspectRatio })} >
                                 <Image key={item.node.image.uri} source={{uri: item.node.image.uri}} style={style.image} />
                             </Pressable>
                         }}
                     />
                 </View>
+                <BottomAppbar navigation={navigation} route={route} />
             </SafeAreaView>
         </>
     )
 }
 
 const style = StyleSheet.create({
+    mainView: {
+        display: 'flex',
+        // justifyContent: 'space-between',
+        height: '100%',
+        backgroundColor: 'rgb(245, 245, 245)',
+    },
     imageList: {
     },
     pressableStyle: {
