@@ -17,7 +17,7 @@ export const DrawerContext = createContext<drawercontextProps>({setShouldOpen: (
 export type StackParamList = {
     Photos: undefined,
     Library: undefined,
-    Image: { uri: string, aspectRatio: number, albumTitle?: string },
+    Image: { uri: string, aspectRatio: number, albumTitle?: string, imagePath?: string | null },
     Album: { title: string }
 }
 
