@@ -13,6 +13,7 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
     const [photos, setPhotos] = useState<PhotoIdentifier[]>();
     const { title } = route.params
 
+    
     const fetchPhotos = useCallback(async () => {
         const response = await CameraRoll.getPhotos({
             first: 100,
@@ -22,6 +23,8 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
         })
 
         setPhotos(response.edges)
+        
+        navigation.setOptions({ headerTitle: title })
     }, [])
 
     useEffect(() => {
@@ -41,7 +44,7 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
                         keyExtractor={(_, index) => index.toString()}
                         renderItem={({item, index}) => {
                             const aspectRatio = item.node.image.width / item.node.image.height;
-                                                        
+
                             return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', { uri: item.node.image.uri, aspectRatio: aspectRatio })} >
                                 <Image key={item.node.image.uri} source={{uri: item.node.image.uri}} style={style.image} />
                             </Pressable>
@@ -57,7 +60,7 @@ export default function ViewAlbum({ navigation, route }: NativeStackScreenProps<
 const style = StyleSheet.create({
     mainView: {
         display: 'flex',
-        // justifyContent: 'space-between',
+        justifyContent: 'space-between',
         height: '100%',
         backgroundColor: 'rgb(245, 245, 245)',
     },

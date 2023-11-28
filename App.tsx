@@ -17,7 +17,7 @@ export const DrawerContext = createContext<drawercontextProps>({setShouldOpen: (
 export type StackParamList = {
     Photos: undefined,
     Library: undefined,
-    Image: { uri: string, aspectRatio?: number },
+    Image: { uri: string, aspectRatio: number, albumTitle?: string },
     Album: { title: string }
 }
 
@@ -35,7 +35,7 @@ function App(): JSX.Element {
                     <Stack.Navigator>
                         <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
                         <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
-                        <Stack.Screen name='Image' component={ViewImage} options={{ headerTitleAlign: 'center', headerTitle: '' }} />
+                        <Stack.Screen name='Image' component={ViewImage} options={{ headerTitleAlign: 'center', headerTitle: '', headerTintColor: 'white', headerStyle: {backgroundColor: 'black'} }} />
                         <Stack.Screen name='Album' component={ViewAlbum} options={{ headerTitleAlign: 'center', headerTitle: '' }} />
                     </Stack.Navigator>
                 </NavigationContainer>
