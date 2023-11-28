@@ -44,7 +44,7 @@ export default function Drawer({ shouldOpen, setShouldOpen }: drawerProps): JSX.
         <>
                 <Animated.View style={[styles.drawer, {transform: [{translateX: move}]}]}>
                     <View style={{height: 64, display: 'flex', justifyContent: 'center'}}>
-                        <Pressable onPress={() => setShouldOpen(prev => !prev)} style={({pressed}) => [{backgroundColor: pressed ? 'rgba(0, 0, 0, 0.1)' : 'transparent'}, styles.buttonPressed]} >
+                        <Pressable onPress={() => setShouldOpen(prev => !prev)} style={{marginLeft: 16}} >
                             <Image source={cancel} />
                         </Pressable>
                     </View>
@@ -61,11 +61,4 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
     },
-    buttonPressed: {
-        width: 35,
-        height: 35, display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 20
-    }
 })
