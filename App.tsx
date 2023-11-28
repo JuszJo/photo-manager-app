@@ -52,7 +52,7 @@ function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList,
     return (
         <>
             <SafeAreaView>
-                <View style={{display: 'flex', height: '100%', justifyContent: 'center'}}>
+                <View style={{display: 'flex', height: '100%', justifyContent: 'space-around'}}>
                     <Image style={{ aspectRatio: 16 / 9 }} source={{ uri: uri }} />
                 </View>
             </SafeAreaView>

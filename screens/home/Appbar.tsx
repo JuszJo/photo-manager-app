@@ -42,6 +42,8 @@ const style = StyleSheet.create({
     appbar: {
         height: 64,
         backgroundColor: 'white',
+        elevation: 4,
+        shadowColor: 'black',
     },
     appbarText: {
         textAlign: 'center',
