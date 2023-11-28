@@ -1,10 +1,11 @@
-import { useCallback, useEffect } from 'react'
-import { StyleSheet, SafeAreaView, View, FlatList, Image } from "react-native"
-import { navigationProps } from "../../App"
+import { useCallback, useEffect, useContext } from 'react'
+import { StyleSheet, SafeAreaView, View, FlatList, Image, Text } from "react-native"
+import { DrawerContext, navigationProps } from "../../App"
 import BottomAppbar from "../home/BottomAppbar"
 import usePermission from "../../hooks/usePermission";
 import { CameraRoll, PhotoIdentifier, Album, PhotoIdentifiersPage } from "@react-native-camera-roll/camera-roll";
 import { useState } from "react";
+import Appbar from '../home/Appbar';
 
 type folderviewProps = {
     title: string,
@@ -12,12 +13,15 @@ type folderviewProps = {
 }
 
 function FolderView({ title, imageURI }: folderviewProps): JSX.Element {
-    console.log(title, imageURI);
-
     return (
         <>
             <View>
-                <Image width={200} height={300} source={{ uri: imageURI }} />
+                <View>
+                    <Text style={style.folderViewText}>{title}</Text>
+                </View>
+                <View>
+                    <Image style={style.folderView} source={{ uri: imageURI }} />
+                </View>
             </View>
         </>
     )
@@ -66,12 +70,15 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
         }
     }, [folders])
 
+    const { setShouldOpen } = useContext(DrawerContext)
 
     return (
         <>
             <SafeAreaView>
                 <View>
+                    <Appbar setShouldOpen={setShouldOpen} />
                     <FlatList
+                        style={style.folderList}
                         numColumns={1}
                         keyExtractor={(_, index) => index.toString()}
                         data={folders}
@@ -80,16 +87,33 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
                             const imageURI = item.edges[0].node.image.uri
 
                             return (
-                                <>
+                                <>  
                                     <FolderView title={title} imageURI={imageURI} />
                                 </>
                             )
                         }}
 
                     />
-                    {/* <BottomAppbar navigation={navigation} route={route} /> */}
+                    <BottomAppbar navigation={navigation} route={route} />
                 </View>
             </SafeAreaView>
         </>
     )
 }
+
+const style = StyleSheet.create({
+    folderList: {
+        // display: 'flex',
+    },
+    folderView: {
+        width: '100%',
+        height: 200,
+        // marginBottom: 24,
+        // paddingBottom: 24,
+    },
+    folderViewText: {
+        fontSize: 20,
+        color: '#1D1B20',
+        fontFamily: 'Gadugi'
+    }
+})

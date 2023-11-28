@@ -9,11 +9,11 @@ import Appbar from './Appbar';
 import ImageView from './ImageView';
 import BottomAppbar from './BottomAppbar';
 import Drawer from './Drawer';
-import { useState } from 'react';
-import { navigationProps } from '../../App';
+import { useState, useContext } from 'react';
+import { DrawerContext, navigationProps } from '../../App';
 
 export default function Photos({ navigation, route }: navigationProps): JSX.Element {
-    const [shouldOpen, setShouldOpen] = useState(false)
+    const {shouldOpen, setShouldOpen} = useContext(DrawerContext)
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import {
     Image,
     SafeAreaView,
@@ -14,6 +14,13 @@ import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navig
 import { NavigationContainer } from '@react-navigation/native';
 import Library from './screens/Library/Library';
 import Photos from './screens/home/Photos';
+
+type drawercontextProps = {
+    shouldOpen: boolean,
+    setShouldOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const DrawerContext = createContext<drawercontextProps>({shouldOpen: false, setShouldOpen: () => {}})
 
 export type navigationProps = NativeStackScreenProps<StackParamList>
 
@@ -40,16 +47,19 @@ export type StackParamList = {
 const Stack = createNativeStackNavigator<StackParamList>();
 
 function App(): JSX.Element {
+    const [shouldOpen, setShouldOpen] = useState(false)
 
     return (
         <>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
-                    <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
-                    <Stack.Screen name='Image' component={ViewImage} options={{ headerTitleAlign: 'center' }} />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <DrawerContext.Provider value={{shouldOpen, setShouldOpen}}>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
+                        <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
+                        <Stack.Screen name='Image' component={ViewImage} options={{ headerTitleAlign: 'center' }} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </DrawerContext.Provider>
         </>
     );
 }
