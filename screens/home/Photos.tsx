@@ -8,12 +8,11 @@ import {
 import Appbar from './Appbar';
 import ImageView from './ImageView';
 import BottomAppbar from './BottomAppbar';
-import Drawer from './Drawer';
 import { useState, useContext } from 'react';
 import { DrawerContext, navigationProps } from '../../App';
 
 export default function Photos({ navigation, route }: navigationProps): JSX.Element {
-    const {shouldOpen, setShouldOpen} = useContext(DrawerContext)
+    const { setShouldOpen } = useContext(DrawerContext)
 
     return (
         <>
@@ -27,7 +26,6 @@ export default function Photos({ navigation, route }: navigationProps): JSX.Elem
                         <BottomAppbar navigation={navigation} route={route} />
                     </View>
                 </View>
-                <Drawer shouldOpen={shouldOpen} setShouldOpen={setShouldOpen} />
             </SafeAreaView>
         </>
     )
