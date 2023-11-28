@@ -15,12 +15,12 @@ type folderviewProps = {
 function FolderView({ title, imageURI }: folderviewProps): JSX.Element {
     return (
         <>
-            <View>
+            <View style={style.folderView}>
                 <View>
                     <Text style={style.folderViewText}>{title}</Text>
                 </View>
                 <View>
-                    <Image style={style.folderView} source={{ uri: imageURI }} />
+                    <Image style={style.image} source={{ uri: imageURI }} />
                 </View>
             </View>
         </>
@@ -75,8 +75,10 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
     return (
         <>
             <SafeAreaView>
-                <View>
-                    <Appbar setShouldOpen={setShouldOpen} />
+                <View style={{height: '100%'}}>
+                    <View style={{marginBottom: 16}}>
+                        <Appbar setShouldOpen={setShouldOpen} />
+                    </View>
                     <FlatList
                         style={style.folderList}
                         numColumns={1}
@@ -94,7 +96,9 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
                         }}
 
                     />
-                    <BottomAppbar navigation={navigation} route={route} />
+                    <View>
+                        <BottomAppbar navigation={navigation} route={route} />
+                    </View>
                 </View>
             </SafeAreaView>
         </>
@@ -104,16 +108,21 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
 const style = StyleSheet.create({
     folderList: {
         // display: 'flex',
+        height: '80%',
     },
     folderView: {
-        width: '100%',
-        height: 200,
-        // marginBottom: 24,
-        // paddingBottom: 24,
+        paddingHorizontal: 16,
+
     },
     folderViewText: {
         fontSize: 20,
         color: '#1D1B20',
         fontFamily: 'Gadugi'
-    }
+    },
+    image: {
+        width: '100%',
+        height: 200,
+        marginBottom: 24,
+        borderRadius: 4,
+    },
 })
