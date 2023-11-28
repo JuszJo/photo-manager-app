@@ -27,7 +27,7 @@ export default function ImageView({ navigation, route }: navigationProps): JSX.E
 
     return (
         <>
-            <View style={{flexBasis: '83%', marginTop: 4}}>
+            <View style={{flexBasis: '82%', marginTop: 4}}>
                 <FlatList
                     style={style.imageList}
                     numColumns={3}
