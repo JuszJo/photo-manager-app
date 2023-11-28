@@ -16,7 +16,7 @@ function FolderView({ title, imageURI }: folderviewProps): JSX.Element {
     return (
         <>
             <View style={style.folderView}>
-                <View>
+                <View style={style.folderTextView}>
                     <Text style={style.folderViewText}>{title}</Text>
                 </View>
                 <View>
@@ -74,7 +74,7 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
 
     return (
         <>
-            <SafeAreaView>
+            <SafeAreaView style={{backgroundColor: 'rgb(245, 245, 245)'}}>
                 <View style={{height: '100%'}}>
                     <View style={{marginBottom: 16}}>
                         <Appbar setShouldOpen={setShouldOpen} />
@@ -107,22 +107,23 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
 
 const style = StyleSheet.create({
     folderList: {
-        // display: 'flex',
         height: '80%',
+        paddingHorizontal: 16,
     },
     folderView: {
-        paddingHorizontal: 16,
-
+        marginBottom: 24,
+    },
+    folderTextView: {
+        marginBottom: 8
     },
     folderViewText: {
-        fontSize: 20,
+        fontSize: 18,
         color: '#1D1B20',
         fontFamily: 'Gadugi'
     },
     image: {
         width: '100%',
-        height: 200,
-        marginBottom: 24,
+        height: 210,
         borderRadius: 4,
     },
 })
