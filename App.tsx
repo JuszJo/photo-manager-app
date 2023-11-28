@@ -1,14 +1,12 @@
-import React, { useState, useContext, createContext, useCallback, useEffect } from 'react';
-import { Image, SafeAreaView, Text, View } from 'react-native';
+import React, { useState, createContext } from 'react';
 
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Library from './screens/Library/Library';
 import Photos from './screens/home/Photos';
+import ViewImage from './screens/ViewImage/ViewImage';
 import ViewAlbum from './screens/Library/ViewAlbum';
 import Drawer from './screens/home/Drawer';
-// import usePermission from './hooks/usePermission';
-// import { PhotoIdentifier, CameraRoll } from '@react-native-camera-roll/camera-roll';
 
 type drawercontextProps = {
     setShouldOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -26,20 +24,6 @@ export type StackParamList = {
 const Stack = createNativeStackNavigator<StackParamList>();
 
 export type navigationProps = NativeStackScreenProps<StackParamList>
-
-function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList, 'Image'>): JSX.Element {
-    const { uri, aspectRatio } = route.params    
-
-    return (
-        <>
-            <SafeAreaView>
-                <View style={{display: 'flex', height: '100%', justifyContent: 'space-around'}}>
-                    <Image style={{ aspectRatio: aspectRatio }} source={{ uri: uri }} />
-                </View>
-            </SafeAreaView>
-        </>
-    )
-}
 
 function App(): JSX.Element {
     const [shouldOpen, setShouldOpen] = useState(false)
