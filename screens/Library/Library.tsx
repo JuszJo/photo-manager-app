@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useContext } from 'react'
-import { StyleSheet, SafeAreaView, View, FlatList, Image, Text } from "react-native"
+import { StyleSheet, SafeAreaView, View, FlatList, Image, Text, Pressable } from "react-native"
 import { DrawerContext, navigationProps } from "../../App"
 import BottomAppbar from "../home/BottomAppbar"
 import usePermission from "../../hooks/usePermission";
@@ -84,7 +84,9 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
 
                             return (
                                 <>  
-                                    <FolderView title={title} imageURI={imageURI} />
+                                    <Pressable onPress={() => navigation.navigate('Album', { title: title})}>
+                                        <FolderView title={title} imageURI={imageURI} />
+                                    </Pressable>
                                 </>
                             )
                         }}

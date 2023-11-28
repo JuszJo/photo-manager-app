@@ -1,22 +1,29 @@
-import React, { useState, useContext, createContext } from 'react';
-import {
-    Image,
-    SafeAreaView,
-    Text,
-    View,
-} from 'react-native';
+import React, { useState, useContext, createContext, useCallback, useEffect } from 'react';
+import { Image, SafeAreaView, Text, View } from 'react-native';
 
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Library from './screens/Library/Library';
 import Photos from './screens/home/Photos';
+import ViewAlbum from './screens/Library/ViewAlbum';
 import Drawer from './screens/home/Drawer';
+// import usePermission from './hooks/usePermission';
+// import { PhotoIdentifier, CameraRoll } from '@react-native-camera-roll/camera-roll';
 
 type drawercontextProps = {
     setShouldOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const DrawerContext = createContext<drawercontextProps>({setShouldOpen: () => {}})
+
+export type StackParamList = {
+    Photos: undefined,
+    Library: undefined,
+    Image: { uri: string, aspectRatio?: number },
+    Album: { title: string }
+}
+
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export type navigationProps = NativeStackScreenProps<StackParamList>
 
@@ -34,14 +41,6 @@ function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList,
     )
 }
 
-export type StackParamList = {
-    Photos: undefined,
-    Library: undefined,
-    Image: { uri: string, aspectRatio?: number }
-}
-
-const Stack = createNativeStackNavigator<StackParamList>();
-
 function App(): JSX.Element {
     const [shouldOpen, setShouldOpen] = useState(false)
 
@@ -53,6 +52,7 @@ function App(): JSX.Element {
                         <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />
                         <Stack.Screen name='Library' component={Library} options={{ headerShown: false }} />
                         <Stack.Screen name='Image' component={ViewImage} options={{ headerTitleAlign: 'center', headerTitle: '' }} />
+                        <Stack.Screen name='Album' component={ViewAlbum} options={{ headerTitleAlign: 'center', headerTitle: '' }} />
                     </Stack.Navigator>
                 </NavigationContainer>
                 <Drawer shouldOpen={shouldOpen} setShouldOpen={setShouldOpen} />
