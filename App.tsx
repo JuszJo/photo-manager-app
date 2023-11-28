@@ -6,36 +6,18 @@ import {
     View,
 } from 'react-native';
 
-import Appbar from './screens/home/Appbar';
-import ImageView from './screens/home/ImageView';
-import BottomAppbar from './screens/home/BottomAppbar';
-import Drawer from './screens/home/Drawer';
+// import Appbar from './screens/home/Appbar';
+// import ImageView from './screens/home/ImageView';
+// import BottomAppbar from './screens/home/BottomAppbar';
+// import Drawer from './screens/home/Drawer';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Library from './screens/Library/Library';
+import Photos from './screens/home/Photos';
 
 export type navigationProps = NativeStackScreenProps<StackParamList>
 
-function Photos({ navigation, route }: navigationProps): JSX.Element {
-    const [shouldOpen, setShouldOpen] = useState(false)
 
-    return (
-        <>
-            <SafeAreaView style={{ backgroundColor: '#F1F1F1' }}>
-                <View style={{ height: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                    <View style={{ display: 'flex' }}>
-                        <Appbar setShouldOpen={setShouldOpen} />
-                        <ImageView navigation={navigation} route={route} />
-                    </View>
-                    <View>
-                        <BottomAppbar navigation={navigation} route={route} />
-                    </View>
-                </View>
-                <Drawer shouldOpen={shouldOpen} setShouldOpen={setShouldOpen} />
-            </SafeAreaView>
-        </>
-    )
-}
 
 function ViewImage({ navigation, route }: NativeStackScreenProps<StackParamList, 'Image'>): JSX.Element {
     const { uri, aspectRatio } = route.params    
