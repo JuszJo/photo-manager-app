@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useContext } from 'react'
-import { StyleSheet, SafeAreaView, View, FlatList, Image, Text, Pressable } from "react-native"
+import { useCallback, useEffect, useContext, useRef } from 'react'
+import { StyleSheet, SafeAreaView, View, FlatList, Image, Text, Pressable, PanResponder } from "react-native"
 import { DrawerContext, navigationProps } from "../../App"
 import BottomAppbar from "../home/BottomAppbar"
 import usePermission from "../../hooks/usePermission";
@@ -66,10 +66,22 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
         }
     }, [albums])
 
+    const panResponder = useRef(
+        PanResponder.create({
+            onMoveShouldSetPanResponder: () => true,
+            
+            onPanResponderRelease(e, s) {
+                if(s.dx > 0) {
+                    navigation.navigate('Photos')
+                }
+            },
+        })
+    ).current
+
     return (
         <>
             <SafeAreaView style={{backgroundColor: 'rgb(245, 245, 245)'}}>
-                <View style={{ opacity: shouldOpen ? 0.5 : 1 , height: '100%'}} onTouchStart={() => {
+                <View {...panResponder.panHandlers} style={{ opacity: shouldOpen ? 0.5 : 1 , height: '100%'}} onTouchStart={() => {
                     if(shouldOpen) {
                         setShouldOpen(false)
                     }
