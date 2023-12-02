@@ -41,7 +41,8 @@ export default function ImageView({ navigation, route }: navigationProps): JSX.E
                                 uri: item.node.image.uri,
                                 aspectRatio: aspectRatio,
                                 imagePath: imagePath,
-                                nextImages: photos
+                                nextImages: photos,
+                                initialIndex: index
                             })} >
                             <Image key={item.node.image.uri} source={{uri: item.node.image.uri}} style={style.image} />
                         </Pressable>
