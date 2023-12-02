@@ -15,16 +15,19 @@ type drawercontextProps = {
 
 export const DrawerContext = createContext<drawercontextProps>({setShouldOpen: () => {}})
 
+export type swipableProps = {
+    uri: string,
+    aspectRatio: number,
+    albumTitle?: string | undefined,
+    imagePath?: string | null | undefined,
+    nextImages?: PhotoIdentifier[] | undefined,
+    initialIndex: number,
+}
+
 export type StackParamList = {
     Photos: undefined,
     Library: undefined,
-    Image: {
-        uri: string,
-        aspectRatio: number,
-        albumTitle?: string,
-        imagePath?: string | null,
-        nextImages?: PhotoIdentifier[] | undefined
-    },
+    Image: swipableProps
     Album: { title: string }
 }
 
