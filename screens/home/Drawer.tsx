@@ -43,10 +43,13 @@ export default function Drawer({ shouldOpen, setShouldOpen }: drawerProps): JSX.
     return (
         <>
                 <Animated.View style={[styles.drawer, {transform: [{translateX: move}]}]}>
-                    <View style={{height: 64, display: 'flex', justifyContent: 'center'}}>
+                    <View style={styles.drawerTab}>
                         <Pressable onPress={() => setShouldOpen(prev => !prev)} style={{marginLeft: 16}} >
                             <Image source={cancel} />
                         </Pressable>
+                    </View>
+                    <View>
+                        <Text style={styles.drawerText}>More Features Coming Soon</Text>
                     </View>
                 </Animated.View>
         </>
@@ -61,4 +64,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
     },
+    drawerTab: {
+        height: 64,
+        display: 'flex',
+        justifyContent: 'center',
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'grey'
+    },
+    drawerText: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginTop: 80
+    }
 })

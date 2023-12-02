@@ -12,12 +12,16 @@ import { useState, useContext } from 'react';
 import { DrawerContext, navigationProps } from '../../App';
 
 export default function Photos({ navigation, route }: navigationProps): JSX.Element {
-    const { setShouldOpen } = useContext(DrawerContext)
+    const { shouldOpen, setShouldOpen } = useContext(DrawerContext)
 
     return (
         <>
             <SafeAreaView style={{ backgroundColor: '#F1F1F1' }}>
-                <View style={{ height: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                <View style={{ opacity: shouldOpen ? 0.5 : 1 , height: '100%', display: 'flex', justifyContent: 'space-between' }} onTouchStart={() => {
+                    if(shouldOpen == true) {
+                        setShouldOpen(false)
+                    }
+                }} >
                     <View style={{ display: 'flex' }}>
                         <Appbar setShouldOpen={setShouldOpen} />
                         <ImageView navigation={navigation} route={route} />

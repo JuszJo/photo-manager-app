@@ -10,10 +10,11 @@ import Drawer from './screens/home/Drawer';
 import { PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
 
 type drawercontextProps = {
+    shouldOpen: boolean,
     setShouldOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const DrawerContext = createContext<drawercontextProps>({setShouldOpen: () => {}})
+export const DrawerContext = createContext<drawercontextProps>({shouldOpen: false, setShouldOpen: () => {}})
 
 export type swipableProps = {
     uri: string,
@@ -40,7 +41,7 @@ function App(): JSX.Element {
 
     return (
         <>
-            <DrawerContext.Provider value={{ setShouldOpen }}>
+            <DrawerContext.Provider value={{ shouldOpen, setShouldOpen }}>
                 <NavigationContainer>
                     <Stack.Navigator>
                         <Stack.Screen name='Photos' component={Photos} options={{ headerShown: false }} />

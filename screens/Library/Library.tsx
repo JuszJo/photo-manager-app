@@ -32,7 +32,7 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
     const [albums, setAlbums] = useState<Array<Album>>();
     const [folders, setFolders] = useState<PhotoIdentifiersPage[]>();
 
-    const { setShouldOpen } = useContext(DrawerContext)
+    const { shouldOpen, setShouldOpen } = useContext(DrawerContext)
 
     const fetchAlbums = useCallback(async () => {
         const response = await CameraRoll.getAlbums({
@@ -69,7 +69,11 @@ export default function Library({ navigation, route }: navigationProps): JSX.Ele
     return (
         <>
             <SafeAreaView style={{backgroundColor: 'rgb(245, 245, 245)'}}>
-                <View style={{height: '100%'}}>
+                <View style={{ opacity: shouldOpen ? 0.5 : 1 , height: '100%'}} onTouchStart={() => {
+                    if(shouldOpen) {
+                        setShouldOpen(false)
+                    }
+                }}>
                     <View style={{marginBottom: 16}}>
                         <Appbar setShouldOpen={setShouldOpen} />
                     </View>
