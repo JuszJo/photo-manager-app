@@ -7,6 +7,7 @@ import Photos from './screens/home/Photos';
 import ViewImage from './screens/ViewImage/ViewImage';
 import ViewAlbum from './screens/Library/ViewAlbum';
 import Drawer from './screens/home/Drawer';
+import { PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
 
 type drawercontextProps = {
     setShouldOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -17,7 +18,13 @@ export const DrawerContext = createContext<drawercontextProps>({setShouldOpen: (
 export type StackParamList = {
     Photos: undefined,
     Library: undefined,
-    Image: { uri: string, aspectRatio: number, albumTitle?: string, imagePath?: string | null },
+    Image: {
+        uri: string,
+        aspectRatio: number,
+        albumTitle?: string,
+        imagePath?: string | null,
+        nextImages?: PhotoIdentifier[] | undefined
+    },
     Album: { title: string }
 }
 

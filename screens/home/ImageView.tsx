@@ -37,7 +37,12 @@ export default function ImageView({ navigation, route }: navigationProps): JSX.E
                         const aspectRatio = item.node.image.width / item.node.image.height;
                         const imagePath = item.node.image.filepath
                         
-                        return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', { uri: item.node.image.uri, aspectRatio: aspectRatio, imagePath: imagePath})} >
+                        return <Pressable style={style.pressableStyle} onPress={() => navigation.navigate('Image', {
+                                uri: item.node.image.uri,
+                                aspectRatio: aspectRatio,
+                                imagePath: imagePath,
+                                nextImages: photos
+                            })} >
                             <Image key={item.node.image.uri} source={{uri: item.node.image.uri}} style={style.image} />
                         </Pressable>
                         
