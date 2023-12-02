@@ -7,11 +7,11 @@ function SwipableImages({ nextImages, initialIndex }: swipableProps): JSX.Elemen
     const screenDimensions = {
         width: useWindowDimensions().width,
         height: useWindowDimensions().height
-    }    
+    }
 
     return (
         <>
-            <View style={{height: '100%'}}>
+            <View style={{ height: '100%' }}>
                 <FlatList
                     data={nextImages}
                     keyExtractor={(_, index) => index.toString()}
@@ -28,13 +28,13 @@ function SwipableImages({ nextImages, initialIndex }: swipableProps): JSX.Elemen
                     snapToAlignment="start"
                     decelerationRate={"fast"}
                     horizontal
-                    renderItem={({item, index}) => {
+                    renderItem={({ item, index }) => {
                         const aspectRatio = item.node.image.width / item.node.image.height;
 
                         return (
                             <>
-                                <View style={{display: 'flex', width: screenDimensions.width, justifyContent: 'center'}}>
-                                    <Image style={{aspectRatio: aspectRatio, }} source={{ uri: item.node.image.uri }} />
+                                <View style={{ display: 'flex', width: screenDimensions.width, justifyContent: 'center' }}>
+                                    <Image style={{ aspectRatio: aspectRatio }} source={{ uri: item.node.image.uri }} />
                                 </View>
                             </>
                         )
@@ -49,7 +49,7 @@ export default function ViewImage({ navigation, route }: NativeStackScreenProps<
 
     return (
         <>
-            <SafeAreaView style={{backgroundColor: 'black'}}>
+            <SafeAreaView style={{ backgroundColor: 'black' }}>
                 <SwipableImages {...route.params} />
             </SafeAreaView>
         </>
