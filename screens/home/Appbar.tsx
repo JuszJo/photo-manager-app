@@ -19,9 +19,9 @@ export default function Appbar({ setShouldOpen }: appbarProps): JSX.Element {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     height: 64,
-                    marginHorizontal: 16
+                    // marginHorizontal: 16
                 }}>
-                    <Pressable onPress={() => setShouldOpen(prev => !prev)}>
+                    <Pressable style={{paddingHorizontal: 16, paddingVertical: 8}} onPress={() => setShouldOpen(prev => !prev)}>
                         <View>
                             <Image source={burger} />
                         </View>
@@ -29,7 +29,7 @@ export default function Appbar({ setShouldOpen }: appbarProps): JSX.Element {
                     <View>
                         <Text style={style.appbarText}>Photos</Text>
                     </View>
-                    <View>
+                    <View style={{paddingHorizontal: 16}}>
                         <Image source={account} />
                     </View>
                 </View>
