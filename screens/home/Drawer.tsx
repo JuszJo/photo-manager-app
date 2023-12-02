@@ -56,7 +56,7 @@ export default function Drawer({ shouldOpen, setShouldOpen }: drawerProps): JSX.
 const styles = StyleSheet.create({
     drawer: {
         width: 200,
-        height: '90%',
+        height: '100%',
         backgroundColor: "white",
         position: 'absolute',
         top: 0,
